@@ -1,0 +1,2 @@
+# DeepFake-Image-Classifier-Using-MobileNet-V4-Small
+This Project is undertaken as a Term Paper for the course on Digital Signal Processing at IIT Delhi. We aim to implement a robust, lightweight CNN model based on the MobileNet V4-Small Architecture to efficiently classify DeepFake Images and quantify the accuracy of the model, with scope to extend the model to a wider class of detection problems.
