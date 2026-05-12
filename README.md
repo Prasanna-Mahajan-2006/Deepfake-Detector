@@ -65,7 +65,7 @@ Enhanced MobileNet and Frequency Domain Analysis](https://www.researchgate.net/p
 ## Authors
 
 - [Prasanna Prasad Mahajan](https://github.com/Prasanna-Mahajan-2006/Deepfake-Detector)
-- [Abhineet Milind More]()
+- [Abhineet Milind More](https://github.com/Abhineet75)
 - [Ayush Tomar]()
 - [Kirti Tekriwal]()
 - [Tiya Mittal]()
