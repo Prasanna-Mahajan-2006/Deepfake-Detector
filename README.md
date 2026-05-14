@@ -6,15 +6,10 @@ This Project is undertaken as a Term Paper for the course on Digital Signal Proc
 
 ## Features
 
-- Modular Notebook Approach: The project is divided into dedicated, self-contained notebooks, allowing users to trace the architectural evolution from a baseline model to the final hybrid solution:
-    - Notebook 1: Baseline Regularized CNN: Establishes a foundational deep learning baseline using standard convolutional layers and Regularization methods along with image pre-processing.
-    - Notebook 2: Transfer Learning Approach: Explores spatial-domain feature extraction by fine-tuning a pre-trained MobileNetV3-Small architecture tail, and a modified, trained classification head suited to the specific problem.
-    - Notebook 3: The Hybrid Dual-Stream Model (Transfer Learning + FFT): The final implementation for the project. It merges the fine-tuned spatial MobileNet with a custom Deep FFT convolutional branch, analyzing both physical pixels and spectral artifacts generally left out by Generative Adversarial Networks (GANs) during generation of DeepFake images.
-    - Notebook 4: Experuimental Ablation Study: Although not a well-working implementation, we have triwd to merge the FFT based approach with attention mechanisms in this approach. Future analysis of this notebook will be undertaken, and suggestions are very welcome.
 - Dynamic Custom Data Generator: Features a highly optimized Keras Sequence generator that calculates 2D Fast Fourier Transforms and log based magnitude spectra during training, saving significant disk space and pre-processing time.
 - Overfit Protection: We have implemented several regularization techniques including dynamic learning rate reduction (ReduceLROnPlateau), early stopping, dropout layers, and L2 kernel penalties.
 - Evaluation Matrices: Generation of Sklearn Classification Reports (Precision, Recall, F1-Score) and visual Seaborn Confusion Matrices evaluated on strictly unshuffled validation data.
-- Real Testing: The last noteboom also consists of a block of code that could be run to feed any real/fake image to a trained model and get the model prediction alongside the confidence score.
+- Real Testing: Notebook 3 (FFT + MobileNet) also consists of a block of code that could be run to feed any real/fake image to a trained model and get the model prediction alongside the confidence score.
 ## Tools & Technologies Used
 
 - TensorFlow / Keras: Model architecture, Transfer Learning, and for implementation of custom/modified sequential models
