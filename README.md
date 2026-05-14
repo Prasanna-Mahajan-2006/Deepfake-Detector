@@ -79,7 +79,7 @@ The important functions used in this project across all the notebooks are docume
 
 - Data Loading: The dataset is automatically downloaded via kagglehub in the first cell of the data pipeline. No manual downloading is required.
 
-- Inference: In ------, navigate to the final cell. You can supply the path to any unseen face image (Real or Fake), and the model will output a prediction alongside a confidence percentage and visual heatmap.
+- Inference: In Notebook 3 (FFT + MobileNet), navigate to the final cell. You can supply the path to any unseen face image (Real or Fake), and the model will output a prediction alongside a confidence percentage and visual heatmap.
 
 ## References & Core Literature
 This project's architecture and theoretical foundation were heavily inspired by recent advancements in multimedia forensics and lightweight convolutional networks. Below are the key research papers that informed our methodology:
