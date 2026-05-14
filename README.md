@@ -26,6 +26,13 @@ The necessary libraries used in this project can be installed with the following
 ```bash
   pip install tensorflow opencv-python numpy pandas scikit-learn matplotlib seaborn kagglehub
 ```
+
+## Dataset
+
+The model was trained and evaluated using the [Deepfake and Real Images Dataset](https://www.kaggle.com/datasets/manjilkarki/deepfake-and-real-images) curated by Manjil Karki on Kaggle.
+The dataset is imported dynamically using the kagglehub library.
+
+It contains a robust mix of authentic human faces and AI-generated deepfakes across Train, Validation, and Test splits.
 ## Documentation
 
 This project aims to implement a DeepFake detetction system for mobile devices using lightweight architectures. We have utilized a modular Notebook Approach in this project, wherein the project is divided into dedicated, self-contained notebooks, allowing users to trace the architectural evolution from a baseline model to the final hybrid solution:
