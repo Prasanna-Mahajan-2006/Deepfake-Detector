@@ -33,7 +33,40 @@ The necessary libraries used in this project can be installed with the following
 ```
 ## Documentation
 
+This project aims to implement a DeepFake detetction system for mobile devices using lightweight architectures. We have utilized a modular Notebook Approach in this project, wherein the project is divided into dedicated, self-contained notebooks, allowing users to trace the architectural evolution from a baseline model to the final hybrid solution:
+- Notebook 1: Baseline Regularized CNN: Establishes a foundational deep learning baseline using standard convolutional layers and Regularization methods along with image pre-processing.
+- Notebook 2: Transfer Learning Approach: Explores spatial-domain feature extraction by fine-tuning a pre-trained MobileNetV3-Small architecture tail, and a modified, trained classification head suited to the specific problem.
+- Notebook 3: The Hybrid Dual-Stream Model (Transfer Learning + FFT): The final implementation for the project. It merges the fine-tuned spatial MobileNet with a custom Deep FFT convolutional branch, analyzing both physical pixels and spectral artifacts generally left out by Generative Adversarial Networks (GANs) during generation of DeepFake images.
+- Notebook 4: Experuimental Ablation Study: Although not a well-working implementation, we have triwd to merge the FFT based approach with attention mechanisms in this approach. Future analysis of this notebook will be undertaken, and suggestions are very welcome.
 
+Within this modular approach, the best results were obtained from the Transfer Learning approach and the FFT approach. The Ablation study which implements Attention Mechanisms, although giving high accuracy on training dataset, has high probability of overfitting, since the dataset utilized is relatively small.
+
+The important functions used in this project across all the notebooks are documented below for ready reference, though this list is certainly not exhaustive, and several functions and methods from the tensorflow library were utilized in building the project:
+
+### Notebook 1: Baseline Regularized CNN
+| Function | Parameters | Return Value | Description |
+| :--- | :--- | :--- | :--- |
+| `build_baseline_cnn` | `img_size` (tuple, default=(224,224)) | `tf.keras.Model` | Constructs a standard, spatial-only Convolutional Neural Network from scratch. Implements baseline regularization techniques (Dropout, L2) to efficiently train the model while reducing chances of overfitting. |
+
+### Notebook 2: Transfer Learning (MobileNetV3)
+| Function | Parameters | Return Value | Description |
+| :--- | :--- | :--- | :--- |
+| `build_mobilenet_model` | `img_size` (tuple, default=(224,224)) | `tf.keras.Model` | Instantiates the MobileNetV3-Small backbone with ImageNet weights. Freezes the lower layers to act as feature extractors, while the more advanced features and later on the classification task are handled by the cutom trained 'head' of the model. |
+
+### Notebook 3: Hybrid Dual-Stream Model (Transfer Learning + FFT)
+| Class/Function | Parameters | Return Value | Description |
+| :--- | :--- | :--- | :--- |
+| `DualStreamGenerator` | `directory` (str), `batch_size` (int), `img_size` (tuple), `shuffle` (bool) | `dict`, `np.array` | A custom Keras `Sequence` class. Yields a dictionary containing `spatial_rgb_input` and `frequency_fft_input` alongside an array of binary labels. |
+| `__getitem__` | `idx` (int) | `dict`, `np.array` | Core generator method. Dynamically computes 2D FFT, center-shifting, and log-magnitude scaling on the CPU for a specific batch. |
+| `build_optimized_hybrid_model`| `img_size` (tuple, default=(224,224)) | `tf.keras.Model` | Constructs the final dual-stream architecture. Merges the fine-tuned MobileNetV3 (top 79 layers unfrozen) with a 4-block deep CNN for the FFT stream, applying 50% Dropout and L2 regularization. |
+| `preprocess_for_inference` | `image_path` (str), `img_size` (tuple) | `dict`, `np.array` | Reads a single unseen image and applies identical spatial normalization and FFT log-magnitude scaling as the training generator, expanding dimensions for Keras batch constraints. |
+| `analyze_image` | `image_path` (str) | None | Wraps the preprocessing and prediction flow. Outputs a terminal classification ("REAL" or "FAKE"), calculates confidence percentages. |
+
+### Notebook 4: Experimental Ablation Study (FFT + Attention)
+| Function | Parameters | Return Value | Description |
+| :--- | :--- | :--- | :--- |
+| `build_attention_hybrid_model`| `img_size` (tuple, default=(224,224)) | `tf.keras.Model` | Constructs the experimental architecture utilizing CBAM/SE Attention mechanisms. Used to demonstrate and diagnose severe model overfitting on localized background noise. |
+| `build_pure_fft_mobilenet` | `img_size` (tuple, default=(224,224)) | `tf.keras.Model` | Freezes the spatial MobileNet backbone entirely, forcing the model to learn exclusively through the FFT stream to isolate the impact of frequency-domain features. |
 
 
 ## Usage: How To Run
