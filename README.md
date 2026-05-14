@@ -101,4 +101,4 @@ Enhanced MobileNet and Frequency Domain Analysis](https://www.researchgate.net/p
 - [Abhineet Milind More](https://github.com/Abhineet75)
 - [Ayush Tomar](https://github.com/AyushTomar1963)
 - [Kirti Tekriwal]()
-- [Tiya Mittal]()
+- [Tiya Mittal](https://GitHub.com/tiya27)
